@@ -1,3 +1,6 @@
+const gravity = 0.05;
+
+
 document.addEventListener("keydown", (event) => {
     initGame();
   });
@@ -6,6 +9,9 @@ document.addEventListener("keydown", (event) => {
 function initGame() {
     const bird = document.getElementById('flying-element');
     bird.style.display = "block";
-    // Your game can start here, but define separate functions, don't write everything in here :)
+}
 
+
+function initGravity() {
+    
 }
