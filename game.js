@@ -18,7 +18,6 @@ function initGame() {
     bird.style.display = "block";
     bird.style.top = elementPosition + "px";
     setInterval(initGravity, gravity);
-    console.log(initGravity)
 }
 
 
@@ -26,16 +25,18 @@ function initGravity() {
     let bird = document.getElementById('flying-element');
     elementPosition += 2;
     bird.style.top = elementPosition + "px";
-    let bird_props = bird.getBoundingClientRect();
-    let game_window = document.querySelector('#game-window').getBoundingClientRect();
-     if (bird_props.top <= 0 ||
-        bird_props.bottom >= game_window.bottom) {
-            clearInterval(1);
+    let birdEdges = bird.getBoundingClientRect();
+    let gameWindow = document.querySelector('#game-window').getBoundingClientRect();
+     if (birdEdges.top <= 0 ||
+        birdEdges.bottom-50 > gameWindow.bottom) {
+            bird.style.display = "none";
      }
 }
 
 
 function birdJump() {
+    const bird = document.getElementById('flying-element');
+    bird.style.transform = 'rotate(-20deg)';
     counter = 0
     let jumpInterval = setInterval(jumper, 10);
     function jumper() {
@@ -45,6 +46,7 @@ function birdJump() {
         bird.style.top = elementPosition + "px";
         if (counter > 30) {
             clearInterval(jumpInterval);
+            bird.style.transform = 'rotate(0deg)';
         } 
     }
 }
