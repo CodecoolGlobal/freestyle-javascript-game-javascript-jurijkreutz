@@ -68,7 +68,17 @@
 
 #blockup {
     position: relative;
-    top: -400px;
+    top: 100px;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    z-index: 4;
+  }
+
+
+  #blockupright {
+    position: relative;
+    top: 100px;
     width: 5px;
     height: 5px;
     background-color: red;
@@ -78,7 +88,7 @@
 
   #blockdown {
     position: relative;
-    top: -500px;
+    top: 100px;
     width: 5px;
     height: 5px;
     background-color: red;

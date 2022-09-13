@@ -84,26 +84,28 @@ function getRandomInt(min, max) {
 
 function checkForCollision () {
     const lowerPipe = document.getElementById('lower-pipe');
-    const blockDown = document.getElementById('blockdown');
-    blockDown.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + "px";
-    blockDown.style.top = parseInt(window.getComputedStyle(lowerPipe).top) - 462 + "px";
+
     const blockUp = document.getElementById('blockup');
-    blockUp.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + "px";
-    blockUp.style.top = parseInt(window.getComputedStyle(lowerPipe).top) - 462 - gapSize + "px";
+    blockUp.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + 150 + "px";
+    blockUp.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 330 + "px";
+
+    const blockDown = document.getElementById('blockdown');
+    blockDown.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + 150 + "px";
+    blockDown.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 330 + gapSize + "px";
+
+    const blockUpRight = document.getElementById('blockupright');
+    blockUpRight.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + 150 + 115 + "px";
+    blockUpRight.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 330 + "px";
 
     const bird = document.getElementById('flying-element');
-    const birdTopPosition = parseInt(window.getComputedStyle(bird).top)
-    const topPipeLimit = parseInt(window.getComputedStyle(lowerPipe).top) - 462 - gapSize
-    const bottomPipeLimit = parseInt(window.getComputedStyle(lowerPipe).top) - 462
-    const leftPipeLimit = parseInt(window.getComputedStyle(lowerPipe).left)
+    let leftUpperLimit = parseInt(window.getComputedStyle(blockUp).left)
+    let rightUpperLimit = parseInt(window.getComputedStyle(blockUpRight).left)
 
-    if (leftPipeLimit < 100) {
-        console.log('Auf Bird Hoehe')
-        console.log(topPipeLimit)
-        console.log(birdTopPosition)
-        console.log(bottomPipeLimit)
-        // if (birdTopPosition ) {
-
-        // }
+    if (leftUpperLimit < 100 && rightUpperLimit > 100) {
+        console.log('Auf Bird Hohe');
+        if (parseInt(window.getComputedStyle(bird).top) < parseInt(window.getComputedStyle(blockUp).top)) {
+            alert('Upper collision');
+        }
     }
+
 }
