@@ -21,6 +21,7 @@ function initGame() {
     bird.style.display = "block";
     bird.style.top = elementPosition + "px";
     setInterval(initGravity, gravity);
+    setInterval(changePipePosition, 1);
 }
 
 
@@ -34,6 +35,18 @@ function initGravity() {
         birdEdges.bottom-50 > gameWindow.bottom) {
             bird.style.display = "none";
      }
+}
+
+function changePipePosition() {
+    const higherPipe = document.getElementById('higher-pipe');
+    const lowerPipe = document.getElementById('lower-pipe');
+    let computedStyle = window.getComputedStyle(higherPipe);
+    let leftValue = parseInt(computedStyle.getPropertyValue('left'))
+    if (leftValue > 580) {
+        let randomPosition = getRandomInt(-100, 250);
+        higherPipe.style.top = randomPosition + "px";
+        lowerPipe.style.top = randomPosition + 300 + "px";
+    }
 }
 
 
