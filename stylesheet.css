@@ -21,35 +21,37 @@
     z-index: 2;
 }
 
-#lower-pipe{ 
+#lower-pipe{
+    display: none; 
     top: 200px;
     left: 600px;
-    height: 200px;
-    width: 100px;
+    height: 560px;
+    width: 390px;
     position: relative;
     animation-name: righttoleft;
     animation-direction: normal;
-    animation-duration: 3s;
+    animation-duration: 2.7s;
     animation-iteration-count: 100;
     animation-timing-function: linear;
-    background-image: url("pipe_removedbg.png");
-    background-size: 100% 100%;
+    background-image: url("pipe_big.png");
+    background-size: cover;
     z-index: 3;
 }
 
-#higher-pipe{ 
+#higher-pipe{
+    display: none;
     top: -100px;
     left: 600px;
-    height: 200px;
-    width: 100px;
+    height: 560px;
+    width: 390px;
     position: relative;
     animation-name: righttoleft;
     animation-direction: normal;
-    animation-duration: 3s;
+    animation-duration: 2.7s;
     animation-iteration-count: 100;
     animation-timing-function: linear;
-    background-image: url("pipe_removedbg.png");
-    background-size: 100% 100%;
+    background-image: url("pipe_big.png");
+    background-size: cover;
     z-index: 3;
     transform: rotate(180deg);
 }
@@ -59,6 +61,6 @@
       left: 600px;
     }
     100% {
-      left: -100px;;
+      left: -300px;;
     }
   }

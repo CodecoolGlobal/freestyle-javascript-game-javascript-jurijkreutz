@@ -40,12 +40,17 @@ function initGravity() {
 function changePipePosition() {
     const higherPipe = document.getElementById('higher-pipe');
     const lowerPipe = document.getElementById('lower-pipe');
+    console.log(higherPipe.style.display)
+    if (window.getComputedStyle(higherPipe).display === "none") {
+        higherPipe.style.display = "block";
+        lowerPipe.style.display = "block";
+    }
     let computedStyle = window.getComputedStyle(higherPipe);
     let leftValue = parseInt(computedStyle.getPropertyValue('left'))
     if (leftValue > 580) {
-        let randomPosition = getRandomInt(-100, 250);
+        let randomPosition = getRandomInt(-450, -200);
         higherPipe.style.top = randomPosition + "px";
-        lowerPipe.style.top = randomPosition + 300 + "px";
+        lowerPipe.style.top = randomPosition + 180 + "px";
     }
 }
 
