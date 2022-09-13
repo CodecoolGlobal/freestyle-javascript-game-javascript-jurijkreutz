@@ -7,6 +7,7 @@
     border-width: 2px;
     background-color: rgb(111, 228, 251);
     overflow: hidden;
+    z-index: 1;
 }
 
 #flying-element {
@@ -17,4 +18,47 @@
     position: relative;
     background-image: url("chicken.gif");
     background-size: cover;
+    z-index: 2;
 }
+
+#lower-pipe{ 
+    top: 200px;
+    left: 600px;
+    height: 200px;
+    width: 100px;
+    position: relative;
+    animation-name: righttoleft;
+    animation-direction: normal;
+    animation-duration: 3s;
+    animation-iteration-count: 100;
+    animation-timing-function: linear;
+    background-image: url("pipe_removedbg.png");
+    background-size: 100% 100%;
+    z-index: 3;
+}
+
+#higher-pipe{ 
+    top: -100px;
+    left: 600px;
+    height: 200px;
+    width: 100px;
+    position: relative;
+    animation-name: righttoleft;
+    animation-direction: normal;
+    animation-duration: 3s;
+    animation-iteration-count: 100;
+    animation-timing-function: linear;
+    background-image: url("pipe_removedbg.png");
+    background-size: 100% 100%;
+    z-index: 3;
+    transform: rotate(180deg);
+}
+
+@keyframes righttoleft {
+    0% {
+      left: 600px;;
+    }
+    100% {
+      left: -100px;;
+    }
+  }
