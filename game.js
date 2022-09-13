@@ -24,6 +24,7 @@ function initGame() {
     bird.style.top = elementPosition + "px";
     setInterval(initGravity, gravity);
     setInterval(changePipePosition, 1);
+    setInterval(checkForCollision, 1);
 }
 
 
@@ -42,7 +43,6 @@ function initGravity() {
 function changePipePosition() {
     const higherPipe = document.getElementById('higher-pipe');
     const lowerPipe = document.getElementById('lower-pipe');
-    console.log(higherPipe.style.display)
     if (window.getComputedStyle(higherPipe).display === "none") {
         higherPipe.style.display = "block";
         lowerPipe.style.display = "block";
@@ -76,6 +76,34 @@ function birdJump() {
     }
 }
 
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+
+function checkForCollision () {
+    const lowerPipe = document.getElementById('lower-pipe');
+    const blockDown = document.getElementById('blockdown');
+    blockDown.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + "px";
+    blockDown.style.top = parseInt(window.getComputedStyle(lowerPipe).top) - 462 + "px";
+    const blockUp = document.getElementById('blockup');
+    blockUp.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + "px";
+    blockUp.style.top = parseInt(window.getComputedStyle(lowerPipe).top) - 462 - gapSize + "px";
+
+    const bird = document.getElementById('flying-element');
+    const birdTopPosition = parseInt(window.getComputedStyle(bird).top)
+    const topPipeLimit = parseInt(window.getComputedStyle(lowerPipe).top) - 462 - gapSize
+    const bottomPipeLimit = parseInt(window.getComputedStyle(lowerPipe).top) - 462
+    const leftPipeLimit = parseInt(window.getComputedStyle(lowerPipe).left)
+
+    if (leftPipeLimit < 100) {
+        console.log('Auf Bird Hoehe')
+        console.log(topPipeLimit)
+        console.log(birdTopPosition)
+        console.log(bottomPipeLimit)
+        // if (birdTopPosition ) {
+
+        // }
+    }
 }

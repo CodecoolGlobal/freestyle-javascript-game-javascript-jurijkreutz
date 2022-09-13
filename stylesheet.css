@@ -64,3 +64,23 @@
       left: -300px;;
     }
   }
+
+
+#blockup {
+    position: relative;
+    top: -400px;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    z-index: 4;
+  }
+
+
+  #blockdown {
+    position: relative;
+    top: -500px;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    z-index: 4;
+  }
