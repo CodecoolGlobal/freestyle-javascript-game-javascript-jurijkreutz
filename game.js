@@ -1,9 +1,11 @@
 const gravity = 0.25;
+let gapSize = 200;
 
-let gameRunning = false
-let elementPosition = 300
+let gameRunning = false;
+let elementPosition = 300;
 
 let pressedKey = false;
+
 
 document.addEventListener("keydown", (event) => {
     if (pressedKey == false) {
@@ -50,7 +52,7 @@ function changePipePosition() {
     if (leftValue > 580) {
         let randomPosition = getRandomInt(-450, -200);
         higherPipe.style.top = randomPosition + "px";
-        lowerPipe.style.top = randomPosition + 180 + "px";
+        lowerPipe.style.top = randomPosition + gapSize + "px";
     }
 }
 
