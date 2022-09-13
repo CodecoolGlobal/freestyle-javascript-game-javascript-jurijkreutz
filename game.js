@@ -3,8 +3,8 @@ let gapSize = 200;
 
 let gameRunning = false;
 let elementPosition = 300;
-
 let pressedKey = false;
+let birdSize = 46;
 
 
 document.addEventListener("keydown", (event) => {
@@ -50,7 +50,7 @@ function changePipePosition() {
     let computedStyle = window.getComputedStyle(higherPipe);
     let leftValue = parseInt(computedStyle.getPropertyValue('left'))
     if (leftValue > 580) {
-        let randomPosition = getRandomInt(-450, -200);
+        let randomPosition = getRandomInt(-400, -160);
         higherPipe.style.top = randomPosition + "px";
         lowerPipe.style.top = randomPosition + gapSize + "px";
     }
@@ -85,26 +85,29 @@ function getRandomInt(min, max) {
 function checkForCollision () {
     const lowerPipe = document.getElementById('lower-pipe');
 
-    const blockUp = document.getElementById('blockup');
-    blockUp.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + 150 + "px";
-    blockUp.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 330 + "px";
+    const upperPipeLeftCorner = document.getElementById('upper-pipe-left-corner');
+    upperPipeLeftCorner.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + "px";
+    upperPipeLeftCorner.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 240 + "px";
+ 
+    const lowerPipeLeftCorner = document.getElementById('lower-pipe-left-corner');
+    lowerPipeLeftCorner.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + "px";
+    lowerPipeLeftCorner.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 240 + gapSize - birdSize + "px";
 
-    const blockDown = document.getElementById('blockdown');
-    blockDown.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + 150 + "px";
-    blockDown.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 330 + gapSize + "px";
-
-    const blockUpRight = document.getElementById('blockupright');
-    blockUpRight.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + 150 + 115 + "px";
-    blockUpRight.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 330 + "px";
+    const upperPipeRightCorner = document.getElementById('upper-pipe-right-corner');
+    upperPipeRightCorner.style.left = parseInt(window.getComputedStyle(lowerPipe).left) + 115 + "px";
+    upperPipeRightCorner.style.top = parseInt(window.getComputedStyle(lowerPipe).top) + 240 + "px";
 
     const bird = document.getElementById('flying-element');
-    let leftUpperLimit = parseInt(window.getComputedStyle(blockUp).left)
-    let rightUpperLimit = parseInt(window.getComputedStyle(blockUpRight).left)
+    let leftUpperLimit = parseInt(window.getComputedStyle(upperPipeLeftCorner).left)
+    let rightUpperLimit = parseInt(window.getComputedStyle(upperPipeRightCorner).left)
 
     if (leftUpperLimit < 100 && rightUpperLimit > 100) {
         console.log('Auf Bird Hohe');
-        if (parseInt(window.getComputedStyle(bird).top) < parseInt(window.getComputedStyle(blockUp).top)) {
+        if (parseInt(window.getComputedStyle(bird).top) < parseInt(window.getComputedStyle(upperPipeLeftCorner).top)) {
             alert('Upper collision');
+        }
+        if ((parseInt(window.getComputedStyle(bird).top)) > parseInt(window.getComputedStyle(lowerPipeLeftCorner).top)) {
+            alert('Lower collision');
         }
     }
 

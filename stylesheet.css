@@ -1,4 +1,5 @@
 #game-window {
+    position: relative;
     margin-left: auto;
     margin-right: auto;
     width: 500px;
@@ -15,7 +16,7 @@
     left: 100px;
     width: 70px;
     height: 70px;
-    position: relative;
+    position: absolute;
     background-image: url("chicken.gif");
     background-size: cover;
     z-index: 2;
@@ -40,8 +41,8 @@
 
 #higher-pipe{
     display: none;
-    top: -100px;
-    left: 600px;
+    top: 100px;
+    left: 0px;
     height: 450px;
     width: 115px;
     position: relative;
@@ -63,12 +64,13 @@
     100% {
       left: -300px;;
     }
-  }
+  } 
 
 
-#blockup {
-    position: relative;
+#upper-pipe-left-corner {
+    position: absolute;
     top: 100px;
+    left: 100px;
     width: 5px;
     height: 5px;
     background-color: red;
@@ -76,21 +78,21 @@
   }
 
 
-  #blockupright {
-    position: relative;
+#upper-pipe-right-corner {
+    position: absolute;
     top: 100px;
     width: 5px;
     height: 5px;
     background-color: red;
     z-index: 4;
-  }
+  } 
 
 
-  #blockdown {
-    position: relative;
+#lower-pipe-left-corner {
+    position: absolute;
     top: 100px;
     width: 5px;
     height: 5px;
     background-color: red;
     z-index: 4;
-  }
+  } 
