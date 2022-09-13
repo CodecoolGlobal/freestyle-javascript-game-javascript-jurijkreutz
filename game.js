@@ -1,11 +1,14 @@
-const gravity = 0.35;
+const gravity = 0.25;
 
 let gameRunning = false
 let elementPosition = 300
 
+let pressedKey = false;
 
 document.addEventListener("keydown", (event) => {
-    birdJump();
+    if (pressedKey == false) {
+        birdJump();
+    }
     if (gameRunning == false) {
         initGame();
     }
@@ -35,6 +38,7 @@ function initGravity() {
 
 
 function birdJump() {
+    pressedKey = true;
     const bird = document.getElementById('flying-element');
     bird.style.transform = 'rotate(-20deg)';
     counter = 0
@@ -44,9 +48,10 @@ function birdJump() {
         counter ++;
         const bird = document.getElementById('flying-element');
         bird.style.top = elementPosition + "px";
-        if (counter > 30) {
+        if (counter > 25) {
             clearInterval(jumpInterval);
             bird.style.transform = 'rotate(0deg)';
+            pressedKey = false;
         } 
     }
 }
