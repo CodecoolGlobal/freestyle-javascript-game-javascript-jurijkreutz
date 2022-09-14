@@ -16,10 +16,11 @@ def main():
     # return render_template('score_test.html', score_data=score_data)
 
 
-<<<<<<< Updated upstream
+
 @app.route("/login")
 def login():
     return render_template('login.html')
+
 
 @app.route("/register", methods=['POST'])
 def register():
