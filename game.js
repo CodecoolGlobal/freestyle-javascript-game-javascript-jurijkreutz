@@ -6,6 +6,8 @@ let gameRunning = false;
 let elementPosition = 300;
 let pressedKey = false;
 let birdSize = 46;
+let pipeCounter = 0;
+let alreadyCounted = false;
 
 
 document.addEventListener("keydown", (event) => {
@@ -28,6 +30,7 @@ function initGame() {
     setInterval(initGravity, gravity);
     setInterval(changePipePosition, 1);
     setInterval(checkForCollision, 1);
+    setInterval(countPipes, 1);
 }
 
 
@@ -105,13 +108,37 @@ function checkForCollision () {
     let rightUpperLimit = parseInt(window.getComputedStyle(upperPipeRightCorner).left)
 
     if (leftUpperLimit < 100 && rightUpperLimit > 100) {
+        alreadyCounted = false;
         console.log('Auf Bird Hohe');
         if (parseInt(window.getComputedStyle(bird).top) < parseInt(window.getComputedStyle(upperPipeLeftCorner).top)) {
-            alert('Upper collision');
+            endGame();
         }
         if ((parseInt(window.getComputedStyle(bird).top)) > parseInt(window.getComputedStyle(lowerPipeLeftCorner).top)) {
-            alert('Lower collision');
+            endGame();
         }
     }
 
+}
+
+
+function endGame() {
+    gameRunning = false;
+    const gameOverScore = document.getElementById('game-over-score');
+    gameOverScore.innerText = pipeCounter;
+    const gameOverWindow = document.getElementById('game-over-window');
+    gameOverWindow.classList.add("start-game-over-window")
+}
+
+
+function countPipes() {
+    const highScoreText = document.getElementById('high-score');
+    const upperPipeRightCorner = document.getElementById('upper-pipe-right-corner');
+    let rightUpperLimit = parseInt(window.getComputedStyle(upperPipeRightCorner).left)
+    if (rightUpperLimit < 100) {
+        if (alreadyCounted == false && gameRunning == true) {
+            alreadyCounted = true;
+            pipeCounter ++
+            highScoreText.innerText = pipeCounter;
+        }
+    }
 }
