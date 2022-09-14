@@ -4,5 +4,5 @@ CREATE TABLE scores (
     username text,
     pw text,
     score integer
-);
 
+);
