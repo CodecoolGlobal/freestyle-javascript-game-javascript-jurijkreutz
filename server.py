@@ -1,5 +1,5 @@
-from flask import Flask, request, redirect, url_for, render_template, session
-import data_manager
+from flask import Flask, request, redirect, url_for, render_template, session, request
+import json
 
 app = Flask(__name__)
 
@@ -9,10 +9,18 @@ def main():
     return render_template('score_test.html')
 
 
-
 @app.route("/game")
 def game():
     return render_template('game.html')
+
+
+@app.route("/save_score", methods=['GET', 'POST'])
+def save_score():
+    data = request.data.decode('utf8')
+    score = json.loads(data).get('score')
+    print(score)
+    return render_template('game.html')
+
 
 if __name__ == "__main__":
     app.run(

@@ -8,6 +8,7 @@ let pressedKey = false;
 let birdSize = 46;
 let pipeCounter = 0;
 let alreadyCounted = false;
+let alreadySent = false;
 
 
 document.addEventListener("keydown", (event) => {
@@ -109,7 +110,6 @@ function checkForCollision () {
 
     if (leftUpperLimit < 100 && rightUpperLimit > 100) {
         alreadyCounted = false;
-        console.log('Auf Bird Hohe');
         if (parseInt(window.getComputedStyle(bird).top) < parseInt(window.getComputedStyle(upperPipeLeftCorner).top)) {
             endGame();
         }
@@ -125,8 +125,31 @@ function endGame() {
     gameRunning = false;
     const gameOverScore = document.getElementById('game-over-score');
     gameOverScore.innerText = pipeCounter;
+    sendHighScoreToServer(pipeCounter);
     const gameOverWindow = document.getElementById('game-over-window');
     gameOverWindow.classList.add("start-game-over-window")
+}
+
+
+function sendHighScoreToServer (pipeCounter) {
+    if (alreadySent == false) {
+        let data = {'score': pipeCounter};
+        fetch('/save_score', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response)
+          .then((data) => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+        alreadySent = true;
+    }
 }
 
 
