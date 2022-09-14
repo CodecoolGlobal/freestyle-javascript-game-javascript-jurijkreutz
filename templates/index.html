@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{%- block title %}Start{% endblock %}
+<link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+{% block score %}
+<div class="index-container">
+    <div id="index-flying-element"></div>
+    <h1>Flappy Chicken</h1>
+    <p>Register, login or play as a guest!</p>
+    <div id="button-container">
+        <div class="pixelbutton">Register</div>
+        <div class="pixelbutton">Login</div>
+        <a href="/game"><div class="pixelbutton yellowb">Play as a guest</div></a>
+    </div>
+</div>
+     {% endblock %}

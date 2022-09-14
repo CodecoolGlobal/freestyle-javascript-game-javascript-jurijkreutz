@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static', filename='site_style.css')}}">
+    {% block head %}{% endblock %}
     <title>{%- block title %}{% endblock %}</title>
-    {%- block stylesheet %}{% endblock %}
      {%- block script %}{% endblock %}
 
 </head>
