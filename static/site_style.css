@@ -108,6 +108,11 @@ border-right: none;
   gap: 20px;
 }
 
+.login-form {
+  gap: 10px !important;
+  line-height: 50px;
+}
+
 #index-flying-element {
   margin-left: auto;
   margin-right: auto;

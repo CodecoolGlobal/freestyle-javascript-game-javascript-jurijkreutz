@@ -13,6 +13,11 @@ def main():
     return render_template('score_test.html', score_data=score_data)
 
 
+@app.route("/register")
+def register():
+    return render_template('register.html')
+
+
 @app.route("/game")
 def game():
     return render_template('game.html')
