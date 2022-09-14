@@ -39,12 +39,6 @@ function initGravity() {
     let bird = document.getElementById('flying-element');
     elementPosition += 2;
     bird.style.top = elementPosition + "px";
-    let birdEdges = bird.getBoundingClientRect();
-    let gameWindow = document.querySelector('#game-window').getBoundingClientRect();
-     if (birdEdges.top <= 0 ||
-        birdEdges.bottom-50 > gameWindow.bottom) {
-            bird.style.display = "none";
-     }
 }
 
 function changePipePosition() {
@@ -117,12 +111,19 @@ function checkForCollision () {
             endGame();
         }
     }
-
+    let birdEdges = bird.getBoundingClientRect();
+    let gameWindow = document.querySelector('#game-window').getBoundingClientRect();
+        if (birdEdges.top <= 0 ||
+            birdEdges.bottom-50 > gameWindow.bottom) {
+                endGame();
+            }
 }
 
 
 function endGame() {
     gameRunning = false;
+    const bird = document.getElementById('flying-element');
+    bird.classList.add('loosing-animation');
     const gameOverScore = document.getElementById('game-over-score');
     gameOverScore.innerText = pipeCounter;
     sendHighScoreToServer(pipeCounter);
