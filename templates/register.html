@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{%- block title %}Start{% endblock %}
+<link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+{% block score %}
+<div class="index-container">
+    <div id="index-flying-element"></div>
+    <h1>Register a new user</h1>
+    <p>If you register, you can save your highscore.</p>
+    <form id="button-container" class="login-form">
+            <label for="name">Username:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password">
+            <input type="submit" value="Submit" class="pixelbutton">
+        </form>
+</div>
+     {% endblock %}
