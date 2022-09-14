@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {%- block title %}Javascript Game{% endblock %}
-{%- block stylesheet %}
-<link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+{% block head %}<link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
 <link rel="stylesheet" href="{{url_for('static', filename='stylesheet.css')}}">{% endblock %}
 {%- block script %}<script src="{{url_for('static', filename='game.js')}}"></script>
 {% endblock %}
