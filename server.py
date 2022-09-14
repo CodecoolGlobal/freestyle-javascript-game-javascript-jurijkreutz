@@ -6,20 +6,24 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
+    user = None
+    if "username" in session:
+        user = session["username"]
 
-    return render_template('index.html')
+    return render_template('index.html', user=user)
 
-    score_data = data_manager.get_highscore()
-    return render_template('score_test.html', score_data=score_data)
+    # score_data = data_manager.get_highscore()
+    # return render_template('score_test.html', score_data=score_data)
 
 
+<<<<<<< Updated upstream
 @app.route("/login")
 def login():
     return render_template('login.html')
 
-
-@app.route("/register")
+@app.route("/register", methods=['POST'])
 def register():
+
     return render_template('register.html')
 
 
