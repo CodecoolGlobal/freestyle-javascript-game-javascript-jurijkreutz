@@ -9,6 +9,11 @@ def main():
     return render_template('score_test.html')
 
 
+
+@app.route("/game")
+def game():
+    return render_template('game.html')
+
 if __name__ == "__main__":
     app.run(
         host='0.0.0.0',
