@@ -1,6 +1,9 @@
 from flask import Flask, request, redirect, url_for, render_template, session, request
 import json
 
+import data_manager
+import password_worktool
+
 app = Flask(__name__)
 
 
@@ -22,10 +25,18 @@ def login():
     return render_template('login.html')
 
 
-@app.route("/register", methods=['POST'])
+@app.route("/register", methods=['GET', 'POST'])
 def register():
+    if request.method == "GET":
+        return render_template('register.html')
 
-    return render_template('register.html')
+    if request.method == "POST":
+        username = request.form["name"]
+        password = request.form["password"]
+        password_hashed = password_worktool.hash_password(password)
+        data_manager.user_data_to_db(username, password_hashed)
+
+        return redirect('/')
 
 
 @app.route("/game")

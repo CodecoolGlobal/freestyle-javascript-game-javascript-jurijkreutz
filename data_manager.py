@@ -15,6 +15,18 @@ def get_highscore(cursor,):
     return cursor.fetchall()
 
 
+@connection_handler
+def user_data_to_db(cursor, username, password):
+    query = """
+        INSERT INTO scores (username, pw, score)
+        VALUES(%s, %s, 0)
+        """
+    cursor.execute(query, (username, password))
+
+
+
+
+
 
 # @connection_handler
 # def add_question(cursor: RealDictCursor, title: str, message: str, file: str):
