@@ -3,6 +3,8 @@
 {%- block stylesheet %}
 <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
 <link rel="stylesheet" href="{{url_for('static', filename='stylesheet.css')}}">{% endblock %}
+{%- block script %}<script src="{{url_for('static', filename='game.js')}}"></script>
+{% endblock %}
 {% block game %}    <div id="game-window">
         <div id="game-over-window">Game over
             <div id="game-over-score">0</div>
