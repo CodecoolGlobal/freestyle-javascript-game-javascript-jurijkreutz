@@ -6,7 +6,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
+
     return render_template('index.html')
+
+    score_data = data_manager.get_highscore()
+    return render_template('score_test.html', score_data=score_data)
 
 
 @app.route("/game")

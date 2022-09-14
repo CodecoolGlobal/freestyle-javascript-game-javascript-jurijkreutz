@@ -1,5 +1,8 @@
    {% extends "base.html" %}
    {%- block title %}Score{% endblock %}
+
+
+   {%- block stylesheet %}<link rel="stylesheet" href="{{url_for('static', filename='style_score.css')}}">{% endblock %}
    {% block score %}<div class="wrapper">
             <table>
                 <caption>High Score</caption>
@@ -8,11 +11,13 @@
                     <th>Username</th>
                     <th>Score</th>
                 </tr>
+                {% for element in score_data %}
                 <tr>
-                    <td>1</td>
-                    <td>Testname</td>
-                    <td>123</td>
+                    <td>{{loop.index}}</td>
+                    <td>{{ element["username"] }}</td>
+                    <td>{{ element["score"] }}</td>
                 </tr>
+                {% endfor %}
             </table>
         </div>{% endblock %}
 
