@@ -1,13 +1,13 @@
 * {
   padding: 0;
   margin: 0;
-  background: rgba(50,50,50,1);
+  background: white;
 }
 
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
   height: 100vh;
 }
 
@@ -19,8 +19,12 @@ border-spacing: 0;
 text-align: center;
 }
 
+.form {
+  margin-top: 20px;
+}
+
 caption {
-  color: white;
+  color: black;
   margin-bottom: 7px;
   font-size: 20px;
 }
