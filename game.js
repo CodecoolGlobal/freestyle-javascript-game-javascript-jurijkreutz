@@ -1,5 +1,6 @@
 const gravity = 0.25;
-let gapSize = 200;
+const gapSize = 200;
+
 
 let gameRunning = false;
 let elementPosition = 300;
@@ -20,6 +21,8 @@ document.addEventListener("keydown", (event) => {
 function initGame() {
     gameRunning = true;
     const bird = document.getElementById('flying-element');
+    const startScreen = document.getElementById('start-screen');
+    startScreen.style.display = "none";
     bird.style.display = "block";
     bird.style.top = elementPosition + "px";
     setInterval(initGravity, gravity);

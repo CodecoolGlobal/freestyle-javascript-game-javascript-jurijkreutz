@@ -32,7 +32,7 @@
     animation-name: righttoleft;
     animation-direction: normal;
     animation-duration: 2.7s;
-    animation-iteration-count: 100;
+    animation-iteration-count: infinite;
     animation-timing-function: linear;
     background-image: url("big_pipe.png");
     background-size: cover;
@@ -49,7 +49,7 @@
     animation-name: righttoleft;
     animation-direction: normal;
     animation-duration: 2.7s;
-    animation-iteration-count: 100;
+    animation-iteration-count: infinite;
     animation-timing-function: linear;
     background-image: url("big_pipe.png");
     background-size: cover;
@@ -68,6 +68,7 @@
 
 
 #upper-pipe-left-corner {
+    visibility: hidden;
     position: absolute;
     top: 100px;
     left: 100px;
@@ -79,6 +80,7 @@
 
 
 #upper-pipe-right-corner {
+    visibility: hidden;
     position: absolute;
     top: 100px;
     width: 5px;
@@ -89,10 +91,101 @@
 
 
 #lower-pipe-left-corner {
+    visibility: hidden;
     position: absolute;
     top: 100px;
     width: 5px;
     height: 5px;
     background-color: red;
     z-index: 4;
-  } 
+  }
+
+
+#start-screen {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 40%;
+  text-align: center;
+  font-size: 2.4em;
+  font-family: 'Courier New', monospace, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#start-cloud {
+  top: -200%;
+  width: 120px;
+  height: 80px;
+  position: absolute;
+  background-image: url("cloud.png");
+  background-size: cover;
+  z-index: 2;
+  animation-name: start-animation-1;
+  animation-direction: normal;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+@keyframes start-animation-1 {
+  0% {
+    left: -300px;
+  }
+  100% {
+    left: 600px;
+  }
+}
+
+
+#start-flying-element {
+    top: -80%;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    background-image: url("chicken.gif");
+    background-size: cover;
+    z-index: 2;
+    animation-name: start-animation-2;
+    animation-direction: normal;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+
+@keyframes start-animation-2 {
+  0% {
+    left: -300px;
+  }
+  30% {
+    top: -130%;
+  }
+  60% {
+    top: -80%;
+  }
+  80% {
+    top: -130%;
+  }
+  100% {
+    left: 600px;
+    top: -80%;
+  }
+}
+
+
+#start-pipe{
+  top: 200px;
+  left: 600px;
+  height: 450px;
+  width: 115px;
+  position: absolute;
+  animation-name: righttoleft;
+  animation-direction: normal;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  background-image: url("big_pipe.png");
+  background-size: cover;
+  z-index: 3;
+}
