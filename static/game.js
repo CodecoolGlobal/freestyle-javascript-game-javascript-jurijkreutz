@@ -15,6 +15,7 @@ let highScoreAlreadySet = false;
 document.addEventListener("keydown", (event) => {
     if (pressedKey == false) {
         birdJump();
+        document.getElementById('chick-up').play();
     }
     if (gameRunning == false) {
         initGame();
@@ -130,6 +131,7 @@ function endGame() {
     const gameOverScore = document.getElementById('game-over-score');
     if (highScoreAlreadySet == false) {
         gameOverScore.innerText = pipeCounter;
+        document.getElementById('game-over').play();
         highScoreAlreadySet = true;
     }
     sendHighScoreToServer(pipeCounter);

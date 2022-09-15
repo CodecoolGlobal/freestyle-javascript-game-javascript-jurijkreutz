@@ -3,7 +3,9 @@
 {% block head %}<link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
 <link rel="stylesheet" href="{{url_for('static', filename='stylesheet.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='style_score.css')}}">{% endblock %}
-{% block game %}    <div id="game-window">
+{% block game %}
+
+    <div id="game-window">
         <div id="game-over-window">Game over
             <div id="game-over-score">0</div>
             <div id="buttons">
@@ -33,6 +35,8 @@
                 <a href="/game"><div class="ingame-button second-button">Play again</div></a>
             </div>
         </div>
+     <audio id="chick-up" preload="auto"><source src="{{url_for('static', filename='chick-up.mp3')}}" type="audio/mpeg" /></audio>
+    <audio id="game-over" preload="auto"><source src="{{url_for('static', filename='game-over.mp3')}}" type="audio/mpeg" /></audio>
         <div id="high-score">0</div>
         <div id="flying-element"></div>
         <div id="floor"></div>
