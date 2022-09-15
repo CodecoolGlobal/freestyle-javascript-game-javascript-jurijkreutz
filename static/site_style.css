@@ -138,3 +138,15 @@ p {
   margin-top: 0px;
   font-size: 1.4em;
 }
+
+#flash {
+  position: fixed;
+  left: 20%;
+  right: 20%;
+  background-color: #4399e1;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  bottom: 50px;
+  font-family: 'Courier New', monospace, Arial, Helvetica, sans-serif;
+}

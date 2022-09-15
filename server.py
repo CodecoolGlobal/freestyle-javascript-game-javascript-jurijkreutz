@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template, session, request
+from flask import Flask, request, redirect, url_for, render_template, session, request, flash
 import json
 
 import data_manager
@@ -11,10 +11,12 @@ app.secret_key = b'\x1c\xee\r*\xfb?\xdc\xa3\xa5b$\x7f\x1d\xf2q.'
 
 @app.route("/")
 def index():
+    score = None
     username = None
     if "username" in session:
         username = session['username']
-    return render_template('index.html', username=username)
+        score = data_manager.get_user_score(username)
+    return render_template('index.html', username=username, score=score)
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -39,7 +41,13 @@ def game():
 def save_score():
     data = request.data.decode('utf8')
     score = json.loads(data).get('score')
+    if "username" in session:
+        username = session['username']
+        db_score = data_manager.get_user_score(username)
+        if db_score < score:
+            data_manager.save_score_to_db(score, username)
     return render_template('game.html')
+
 
 @app.route("/logout")
 def logout():
@@ -55,7 +63,7 @@ def login():
         password = request.form['password']
         login_data = data_manager.get_user_data(username)
         if login_data is None:
-            # flash("Incorrect username, please try again")
+            flash("Incorrect username, please try again")
             return redirect('/login')
         hashed_pw_from_db = login_data['pw']
         pw_is_valid = password_worktool.verify_password(password, hashed_pw_from_db)
@@ -63,7 +71,7 @@ def login():
             session['username'] = username
             return redirect('/')
         else:
-            # flash("Incorrect password, please try again")
+            flash("Incorrect password, please try again")
             return redirect(url_for('login'))
 
 

@@ -33,6 +33,25 @@ def get_user_data(cursor, username):
     cursor.execute(query, (username,))
     return cursor.fetchone()
 
+@connection_handler
+def save_score_to_db(cursor, user_score, username):
+    query = """
+    UPDATE scores
+    SET score = %s
+    WHERE username = %s"""
+
+    cursor.execute(query, (user_score, username))
+
+
+@connection_handler
+def get_user_score(cursor, username):
+    query = """
+    SELECT score
+    FROM scores
+    WHERE username = %s;"""
+
+    cursor.execute(query, (username,))
+    return cursor.fetchone()['score']
 
 
 
