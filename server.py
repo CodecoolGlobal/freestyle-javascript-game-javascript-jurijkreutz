@@ -17,11 +17,6 @@ def index():
     return render_template('index.html', username=username)
 
 
-@app.route("/login")
-def login():
-    return render_template('login.html')
-
-
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if request.method == "GET":
@@ -50,6 +45,26 @@ def save_score():
 def logout():
     session.pop('username', None)
     return redirect(url_for("index"))
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    elif request.method == 'POST':
+        username = request.form['name']
+        password = request.form['password']
+        login_data = data_manager.get_user_data(username)
+        if login_data is None:
+            # flash("Incorrect username, please try again")
+            return redirect('/login')
+        hashed_pw_from_db = login_data['pw']
+        pw_is_valid = password_worktool.verify_password(password, hashed_pw_from_db)
+        if pw_is_valid:
+            session['username'] = username
+            return redirect('/')
+        else:
+            # flash("Incorrect password, please try again")
+            return redirect(url_for('login'))
 
 
 if __name__ == "__main__":

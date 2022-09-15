@@ -23,6 +23,16 @@ def user_data_to_db(cursor, username, password):
         """
     cursor.execute(query, (username, password))
 
+@connection_handler
+def get_user_data(cursor, username):
+    query = """
+    SELECT pw
+    FROM scores
+    WHERE username = %s;"""
+
+    cursor.execute(query, (username,))
+    return cursor.fetchone()
+
 
 
 
