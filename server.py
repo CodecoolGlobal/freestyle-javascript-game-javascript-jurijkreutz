@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template, session, request
+from flask import Flask, request, redirect, url_for, render_template, session, request, flash
 import json
 
 import data_manager
@@ -39,7 +39,9 @@ def game():
 def save_score():
     data = request.data.decode('utf8')
     score = json.loads(data).get('score')
+    print(score)
     return render_template('game.html')
+
 
 @app.route("/logout")
 def logout():
@@ -55,7 +57,7 @@ def login():
         password = request.form['password']
         login_data = data_manager.get_user_data(username)
         if login_data is None:
-            # flash("Incorrect username, please try again")
+            flash("Incorrect username, please try again")
             return redirect('/login')
         hashed_pw_from_db = login_data['pw']
         pw_is_valid = password_worktool.verify_password(password, hashed_pw_from_db)
@@ -63,7 +65,7 @@ def login():
             session['username'] = username
             return redirect('/')
         else:
-            # flash("Incorrect password, please try again")
+            flash("Incorrect password, please try again")
             return redirect(url_for('login'))
 
 
