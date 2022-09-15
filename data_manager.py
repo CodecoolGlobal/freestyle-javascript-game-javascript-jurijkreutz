@@ -68,6 +68,5 @@ def get_user_names_list():
     real_dict_row = get_user_names()
     list_usernames = []
     for row in real_dict_row:
-        list_usernames.append(dict(row))
+        list_usernames.append(row['username'])
     return list_usernames
-
