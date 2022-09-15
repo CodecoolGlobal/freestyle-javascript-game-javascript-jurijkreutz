@@ -5,15 +5,17 @@ import data_manager
 import password_worktool
 
 app = Flask(__name__)
+app.secret_key = b'\x1c\xee\r*\xfb?\xdc\xa3\xa5b$\x7f\x1d\xf2q.'
+
 
 
 @app.route("/")
-def main():
-    user = None
+def index():
+    username = None
     if "username" in session:
-        user = session["username"]
+        username = session['username']
 
-    return render_template('index.html', user=user)
+    return render_template('index.html', username=username)
 
     # score_data = data_manager.get_highscore()
     # return render_template('score_test.html', score_data=score_data)
@@ -35,6 +37,8 @@ def register():
         password = request.form["password"]
         password_hashed = password_worktool.hash_password(password)
         data_manager.user_data_to_db(username, password_hashed)
+        session["username"] = username
+        print(session["username"])
 
         return redirect('/')
 
@@ -50,6 +54,11 @@ def save_score():
     score = json.loads(data).get('score')
     print(score)
     return render_template('game.html')
+
+@app.route("/logout")
+def logout():
+    session.pop('username', None)
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
