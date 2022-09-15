@@ -54,25 +54,20 @@ def get_user_score(cursor, username):
     return cursor.fetchone()['score']
 
 
+@connection_handler
+def get_user_names(cursor):
+    query = """
+    SELECT username
+    FROM scores
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
+    
 
-
-
-# @connection_handler
-# def add_question(cursor: RealDictCursor, title: str, message: str, file: str):
-#     timestamp = datetime.now().replace(microsecond=0)
-#     query = """
-#         INSERT INTO question(submission_time, view_number, vote_number, title, message, image, user_id)
-#         VALUES (%(timestamp)s, 0, 0, %(title)s, %(message)s, %(file)s, %(user_id)s);
-#         UPDATE user_list
-#         SET questions_number = questions_number +1
-#         WHERE id = %(user_id)s;
-#         """
-#     args = {'timestamp': timestamp,
-#             'title': title,
-#             'message': message,
-#             'file': file,
-#             'user_id': session['user_id']
-#             }
-#     cursor.execute(query, args)
-
+def get_user_names_list():
+    real_dict_row = get_user_names()
+    list_usernames = []
+    for row in real_dict_row:
+        list_usernames.append(dict(row))
+    return list_usernames
 

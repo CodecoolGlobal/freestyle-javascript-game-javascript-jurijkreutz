@@ -26,10 +26,16 @@ def register():
     if request.method == "POST":
         username = request.form["name"]
         password = request.form["password"]
-        password_hashed = password_worktool.hash_password(password)
-        data_manager.user_data_to_db(username, password_hashed)
-        session["username"] = username
-        return redirect('/')
+        list_usernames = data_manager.get_user_names_list()
+        if username not in list_usernames:
+            password_hashed = password_worktool.hash_password(password)
+            data_manager.user_data_to_db(username, password_hashed)
+            session["username"] = username
+            flash("Registered succesfully")
+            return redirect('/')
+        else:
+            flash("This username is already taken")
+            return redirect(url_for('register'))
 
 
 @app.route("/game")
