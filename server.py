@@ -39,6 +39,9 @@ def game():
 def save_score():
     data = request.data.decode('utf8')
     score = json.loads(data).get('score')
+    if "username" in session:
+        username = session['username']
+    data_manager.save_score_to_db(score, username, score)
     return render_template('game.html')
 
 @app.route("/logout")
