@@ -9,6 +9,7 @@ let birdSize = 46;
 let pipeCounter = 0;
 let alreadyCounted = false;
 let alreadySent = false;
+let highScoreAlreadySet = false;
 
 
 document.addEventListener("keydown", (event) => {
@@ -122,10 +123,15 @@ function checkForCollision () {
 
 function endGame() {
     gameRunning = false;
+    const rightUpperCounter = document.getElementById('high-score');
+    rightUpperCounter.style.display = 'None';
     const bird = document.getElementById('flying-element');
     bird.classList.add('loosing-animation');
     const gameOverScore = document.getElementById('game-over-score');
-    gameOverScore.innerText = pipeCounter;
+    if (highScoreAlreadySet == false) {
+        gameOverScore.innerText = pipeCounter;
+        highScoreAlreadySet = true;
+    }
     sendHighScoreToServer(pipeCounter);
     const gameOverWindow = document.getElementById('game-over-window');
     gameOverWindow.classList.add("start-game-over-window")
