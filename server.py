@@ -41,8 +41,7 @@ def save_score():
     score = json.loads(data).get('score')
     if "username" in session:
         username = session['username']
-    data_manager.save_score_to_db(score, username, score)
-    print(score)
+        data_manager.save_score_to_db(score, username, score)
     return render_template('game.html')
 
 
