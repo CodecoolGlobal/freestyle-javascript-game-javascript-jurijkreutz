@@ -34,13 +34,13 @@ def get_user_data(cursor, username):
     return cursor.fetchone()
 
 @connection_handler
-def save_score_to_db(cursor, user_score, username, high_score):
+def save_score_to_db(cursor, user_score, username):
     query = """
-    INSERT INTO scores (score)
-    VALUES (%s)
-    WHERE username = %s AND score < %s"""
+    UPDATE scores
+    SET score = %s
+    WHERE username = %s"""
 
-    cursor.execute(query, (user_score, username, high_score))
+    cursor.execute(query, (user_score, username))
 
 
 @connection_handler

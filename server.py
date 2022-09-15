@@ -11,6 +11,7 @@ app.secret_key = b'\x1c\xee\r*\xfb?\xdc\xa3\xa5b$\x7f\x1d\xf2q.'
 
 @app.route("/")
 def index():
+    score = None
     username = None
     if "username" in session:
         username = session['username']
@@ -42,7 +43,9 @@ def save_score():
     score = json.loads(data).get('score')
     if "username" in session:
         username = session['username']
-        data_manager.save_score_to_db(score, username, score)
+        db_score = data_manager.get_user_score(username)
+        if db_score < score:
+            data_manager.save_score_to_db(score, username)
     return render_template('game.html')
 
 
