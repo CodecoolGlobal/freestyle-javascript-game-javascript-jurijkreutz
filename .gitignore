@@ -1,6 +1,7 @@
-.idea/
-.vscode/
+venv/
+sample_data/
 __pycache__/
-.json
-.venv
-database_common.py
+.idea/
+.vscode
+*.py[cod]
+static/uploads/
