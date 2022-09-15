@@ -14,12 +14,7 @@ def index():
     username = None
     if "username" in session:
         username = session['username']
-
     return render_template('index.html', username=username)
-
-    # score_data = data_manager.get_highscore()
-    # return render_template('score_test.html', score_data=score_data)
-
 
 
 @app.route("/login")
@@ -31,15 +26,12 @@ def login():
 def register():
     if request.method == "GET":
         return render_template('register.html')
-
     if request.method == "POST":
         username = request.form["name"]
         password = request.form["password"]
         password_hashed = password_worktool.hash_password(password)
         data_manager.user_data_to_db(username, password_hashed)
         session["username"] = username
-        print(session["username"])
-
         return redirect('/')
 
 
@@ -52,7 +44,6 @@ def game():
 def save_score():
     data = request.data.decode('utf8')
     score = json.loads(data).get('score')
-    print(score)
     return render_template('game.html')
 
 @app.route("/logout")
