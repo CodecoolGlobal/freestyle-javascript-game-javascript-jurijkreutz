@@ -5,7 +5,12 @@
 <div class="index-container">
     <div id="index-flying-element"></div>
     <h1>Flappy Chicken</h1>
+    {% if 'username' in session %}
+    <p>Welcome, {{session['username']}}. Start playing!</p>
+    <p>Current highscore: <strong>PLACEHOLDER</strong></p>
+    {% else %}
     <p>Register, login or play as a guest!</p>
+    {% endif %}
     <div id="button-container">
          {% if 'username' in session %}
         <div class="pixelbutton">Play</div>
