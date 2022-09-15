@@ -34,7 +34,14 @@ def register():
 
 @app.route("/game")
 def game():
-    return render_template('game.html')
+    high_scores = data_manager.get_highscore()
+    return render_template('game.html', high_scores=high_scores)
+
+
+@app.route("/scorelist")
+def scorelist():
+    high_scores = data_manager.get_highscore()
+    return render_template('score_test.html', high_scores=high_scores)
 
 
 @app.route("/save_score", methods=['GET', 'POST'])
@@ -53,6 +60,7 @@ def save_score():
 def logout():
     session.pop('username', None)
     return redirect(url_for("index"))
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():

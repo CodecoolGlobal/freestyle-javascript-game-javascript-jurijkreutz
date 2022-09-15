@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="{{url_for('static', filename='site_style.css')}}">
     {% block head %}{% endblock %}
     <title>{%- block title %}{% endblock %}</title>
-     {%- block script %}{% endblock %}
 
 </head>
 <body>
@@ -21,5 +20,6 @@
     </div>
     {% endif %}
     {% endwith %}
+    {%- block script %}{% endblock %}
 </body>
 </html>
