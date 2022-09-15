@@ -1,22 +1,12 @@
-* {
-  padding: 0;
-  margin: 0;
-  background: white;
-}
-
-.wrapper {
-  /*display: flex;*/
-  /*justify-content: center;*/
-  /*align-items: center;*/
-  height: 100vh;
-}
-
 table {
-font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+font-family: 'Courier New', monospace, Arial, Helvetica, sans-serif;
 font-size: 14px;
-border-radius: 10px;
+text-shadow: none !important;
+width: 260px;
 border-spacing: 0;
 text-align: center;
+margin-left: auto;
+margin-right: auto;
 }
 
 .form {
@@ -30,9 +20,9 @@ caption {
 }
 
 th {
-background: rgba(255,137,0,0.9);
+background: #f0b60a;
 padding: 10px 20px;
-  color: rgba(129, 69, 0, 1);
+  color: white;
 }
 th, td {
 border-style: solid;
@@ -40,13 +30,6 @@ border-width: 0 1px 1px 0;
 border-color: rgba(0,0,0,0.1);
 }
 
-th:first-child {
-border-top-left-radius: 5px;
-}
-th:last-child {
-border-top-right-radius: 5px;
-border-right: none;
-}
 th:first-child, td:first-child {
 padding: 7px 8px;
 }
@@ -63,14 +46,4 @@ td {
   background: rgba(215, 215, 215, 1);
   color: rgba(0, 0, 0, 0.8);
 
-}
-
-tr:last-child td:first-child {
-border-radius: 0 0 0 5px;
-}
-tr:last-child td:last-child {
-border-radius: 0 0 5px 0;
-}
-tr td:last-child {
-border-right: none;
 }

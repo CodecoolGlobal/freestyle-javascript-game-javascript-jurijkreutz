@@ -1,12 +1,37 @@
 {% extends "base.html" %}
 {%- block title %}Javascript Game{% endblock %}
 {% block head %}<link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
-<link rel="stylesheet" href="{{url_for('static', filename='stylesheet.css')}}">{% endblock %}
-{%- block script %}<script src="{{url_for('static', filename='game.js')}}"></script>
-{% endblock %}
+<link rel="stylesheet" href="{{url_for('static', filename='stylesheet.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='style_score.css')}}">{% endblock %}
 {% block game %}    <div id="game-window">
         <div id="game-over-window">Game over
             <div id="game-over-score">0</div>
+            <div id="buttons">
+                <a href="/scorelist"><div class="ingame-button ingame-yellow">Scorelist</div></a>
+                <a href="/game"><div class="ingame-button second-button">Play again</div></a>
+            </div>
+        </div>
+        <div id="score-table">
+            High Score
+            <div id="table-wrapper">
+                <table>
+                    <tr>
+                        <th>Position</th>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                    {% for element in high_scores %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{ element["username"] }}</td>
+                        <td>{{ element["score"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="buttons">
+                <a href="/game"><div class="ingame-button second-button">Play again</div></a>
+            </div>
         </div>
         <div id="high-score">0</div>
         <div id="flying-element"></div>
@@ -23,3 +48,5 @@
         </div>
     </div>{% endblock %}
 
+{%- block script %}<script src="{{url_for('static', filename='game.js')}}"></script>
+{% endblock %}

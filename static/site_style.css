@@ -1,3 +1,8 @@
+body {
+  margin-top: 0px !important;
+  margin-left: 0px !important;
+}
+
 .wrapper {
   /*display: flex;*/
   /*justify-content: center;*/
@@ -85,6 +90,7 @@ border-right: none;
   font-weight: 700;
   color: white;
   line-height: 26px;
+  text-shadow: none !important;
 }
 
 .yellowb {
