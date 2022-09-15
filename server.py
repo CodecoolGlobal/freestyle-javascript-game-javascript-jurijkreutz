@@ -14,7 +14,8 @@ def index():
     username = None
     if "username" in session:
         username = session['username']
-    return render_template('index.html', username=username)
+        score = data_manager.get_user_score(username)
+    return render_template('index.html', username=username, score=score)
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -42,7 +43,6 @@ def save_score():
     if "username" in session:
         username = session['username']
     data_manager.save_score_to_db(score, username, score)
-    print(score)
     return render_template('game.html')
 
 

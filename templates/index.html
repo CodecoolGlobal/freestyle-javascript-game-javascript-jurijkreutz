@@ -7,7 +7,9 @@
     <h1>Flappy Chicken</h1>
     {% if 'username' in session %}
     <p>Welcome, {{session['username']}}. Start playing!</p>
-    <p>Current highscore: <strong>PLACEHOLDER</strong></p>
+        {% if score is defined %}
+        <p>Current highscore: <strong>{{ score }}</strong></p>
+        {% endif %}
     {% else %}
     <p>Register, login or play as a guest!</p>
     {% endif %}
