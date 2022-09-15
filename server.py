@@ -29,13 +29,11 @@ def login():
 def register():
     if request.method == "GET":
         return render_template('register.html')
-
     if request.method == "POST":
         username = request.form["name"]
         password = request.form["password"]
         password_hashed = password_worktool.hash_password(password)
         data_manager.user_data_to_db(username, password_hashed)
-
         return redirect('/')
 
 
